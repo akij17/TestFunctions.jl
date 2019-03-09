@@ -18,16 +18,17 @@ end
 Compute the sphere function for given vectors X and Y.
 Return a vector containing the result. 
 """
-function sphere(X::Array{Float64, 1}, Y::Float64{Float64, 1})
+function sphere(X::Array{Float64, 1}, Y::Array{Float64, 1})
     m = size(X)[1]
     n = size(Y)[1]
     if m!=n
         println("Invalid input: Supplied vectors must be of same size")
         return
     end
-    R = Array{Float64, 1}
+    R = Float64[]
     for i in 1:m
-        push!(R, spherefn(X[i], Y[i]))
+        val = spherefn(X[i], Y[i])
+        push!(R, val)
     end
     R
 end
