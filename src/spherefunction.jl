@@ -3,22 +3,22 @@
 # More information: https://en.wikipedia.org/wiki/Test_functions_for_optimization
 
 """
-    spherefn(x1, x2)
+    sphere(x1::Float64, x2::Float64)
     
 Compute the sphere function for supplied values of x and return the value.
 Note: Please use sphere(X, Y) for computing sphere function.    
 """
-function spherefn(x1::Float64, x2::Float64)
+function sphere(x1::Float64, x2::Float64)
     sum = x1^2 + x2^2
 end
 
 """
-    sphere(X, Y)
+    spherefn(X::Array{Float64, 1}, Y::Array{Float64, 1})
 
 Compute the sphere function for given vectors X and Y.
 Return a vector containing the result. 
 """
-function sphere(X::Array{Float64, 1}, Y::Array{Float64, 1})
+function spherefn(X::Array{Float64, 1}, Y::Array{Float64, 1})
     m = size(X)[1]
     n = size(Y)[1]
     if m!=n
