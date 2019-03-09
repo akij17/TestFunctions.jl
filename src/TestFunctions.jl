@@ -1,8 +1,8 @@
 module TestFunctions
 
 export 
-    spherefn,
-    spherepfn
+    sphere,
+    spherep
 include("spherefunction.jl")
 
 end #module
