@@ -15,7 +15,7 @@ function ackley(X::Array{Float64, 1})
         sum2 = sum2 + cos(c * X[i])
     end
     sum1 = -a * exp(-b * sqrt(sum1/n))
-    sum 2 = -exp(sum2/n)
+    sum2 = -exp(sum2/n)
     sum1 + sum2 + a + exp(1)
 end
 
