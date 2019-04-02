@@ -4,10 +4,10 @@
 """
     ackley(X::Array{Float64, 1})
 
-Compute ackley function for n-th order. 
-(Use ackley2d or ackley3d for easier plotting)
+Compute ackley function for n-th order.
+(Use ackley2d for easier plotting)
 """
-function ackley(X::Array{Float64, 1})
+function ackley(X::AbstractVector; a, b, c)
     n = size(X)[1]
     sum1 = sum2 = 0
     for i in 1:n
@@ -20,39 +20,28 @@ function ackley(X::Array{Float64, 1})
 end
 
 """
-    ackley2d(x1, x2; a = 20, b = 0.2, c = 2*pi)
-
-Compute 2-dimensional ackley function.
-(All input in Float64)
-"""
-function ackley2d(x1::Float64, x2::Float64; a::Float64=20, b::Float64=0.2, c::Float64=2*pi)
-    ackley([x1, x2])
-end
-"""
-    ackley2dfn(X1, X2, ...)
+    ackley2dfn(X1, X2; a=20, b=0.2, c=2π)
 
 Same as ackley2d but takes two input vectors and returns a vectors.
 """
-function ackley2dfn(X1::Array{Float64, 1}, X2::Array{Float64, 1}; a::Float64=20, b::Float64=0.2, c::Float64=2*pi)
-    m = size(X1)[1]
-    n = size(X2)[1]
+function ackley2dfn(X1::AbstractVector, X2::AbstractVector; a::Number=20, b::Number=0.2, c::Number=2*pi)
+    m = size(X1, 1)
+    n = size(X2, 1)
     if m != n
         println("Arrays are of unequal lengths")
         return
     end
-    R = Float64[]
+    R = eltype(X1)[]
     for i in 1:m
-        push!(R, ackley2d(X1[i], X2[i]))
+        push!(R, ackley([X1[i], X2[i]], a = a, b = b, c = c))
     end
     R
 end
 
-"""
-    ackley3d(x1, x2, x3; a = 20, b = 0.2, c = 2*pi)
-
-Compute 3D ackley function.
-(All input in Float64)
-"""
-function ackley3d(x1::Float64, x2::Float64, x3::Float64 a::Float64=20, b::Float64=0.2, c::Float64=2*pi)
-    ackley([x1, x2, x3])
-end
+#=
+using Plots
+A = Array{Float64, 1}(-32.7:0.7:32.7)
+B = Array{Float64, 1}(-32.7:0.7:32.7)
+r = ackley2dfn(A, B)
+plot(A, B, r)
+=#
